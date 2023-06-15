@@ -1,0 +1,39 @@
+[
+  {
+  "configurationId": "1",
+  "configurationType": "cdr",
+  "notificationId": "1000",
+  "useCase": "After Visit Summary",
+  "anbcFeatureId": "",
+  "fabricProgramId": "2267",
+  "receiverMapping": {
+      "outboundType": "com.cvs.health4life-cdr-notification-avs",
+      "source": "urn:com.cvs.health4life.cdr-event-receiver-v2"
+      
+  },
+  "businessLogicMapping": {
+      "source": "com.cvs.h4l-business-logic",
+      "outboundType": "com.cvs.cdr-cp-notification-avs",
+      "recordType":"avs"
+  },
+  "businessLogicRules": [
+      "validateResources",
+      "visitTypeFilter",
+      "ageFilter",
+      "createData",
+      "publishToTopic"
+  ],
+  "commProcessorMapping": {},
+  "commProcessorRules": [
+      "validateAndShapeRequest",
+      "validateFields",
+      "validateSensitiveData",
+      "getCaregivers",
+      "sendTomessageOrch"
+  ],
+  "messageOrchRules": [
+      "requiredDynamicFields",
+      "sentToFabric"
+  ]
+}
+]
